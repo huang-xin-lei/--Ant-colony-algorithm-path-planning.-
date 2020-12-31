@@ -1,6 +1,6 @@
-function [ PG,PV,fitness ] = evaluate( solution )
+function [ PG,PV,fitness ] = evaluate( solution,box )
 
-global box; global cargo; global lambda
+global cargo; global lambda
 fit_G = 0;
 fit_V = 0;
 

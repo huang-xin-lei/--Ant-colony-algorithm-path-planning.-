@@ -24,7 +24,7 @@ box=box(box_sty,:); % 选择的种类
 orginal_cargo=orginal_cargo(aa,:); 
 count=1;
 for i=1:size(orginal_cargo,1)           %重构货物格式  cargo: 重 长 宽 高 体积 ；其中 长>宽>高
-    for j=1:1%orginal_cargo(i,2) %货物个数 =size(orginal_cargo,1)*orginal_cargo(i,2) 
+    for j=1:orginal_cargo(i,2) %货物个数 =size(orginal_cargo,1)*orginal_cargo(i,2) 
         cargo(count,1:4) = orginal_cargo(i,3:6);
         cargo(count,5) = prod(cargo(count,2:4),2); 
         cargo(count,2:4) = sort(cargo(count,2:4),'descend');
@@ -42,7 +42,7 @@ solution= fix((num_box)*rand(1,num_cargo))+1;   %随机生成初始解
 Scheme=transform(solution);                     %解转化成“货箱：货物”对应的形式
 [feas_solution,Scheme]= placement(Scheme,box);             %装箱处理
 
-[PG,PV,gbest ]= evaluate(feas_solution) ;      %计算适应度
+[PG,PV,gbest ]= evaluate(feas_solution,box) ;      %计算适应度
 
 %--------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ while T > T_End
         newsolution(R2)=inter;
         NewScheme=transform(newsolution);                   % 分配货箱
         [feas_solution,NewScheme]= placement(NewScheme,box);              % 装箱处理
-        [NPG,NPV,pbest ]= evaluate(feas_solution);            % 评估新方案
+        [NPG,NPV,pbest ]= evaluate(feas_solution,box);            % 评估新方案
         if pbest>gbest
             gbest = pbest;
             final_solution = newsolution;

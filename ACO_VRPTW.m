@@ -25,7 +25,7 @@ clc
 close all
 tic
 %% 用importdata这个函数来读取文件
-c101=importdata('c101.txt');
+c101=importdata('c103.txt');
 box=load('box'); %获箱体信息  box: 重 长 宽 高 体积
 box_sty=1; %装载箱类型种类
 orginal_cargo=load('cargo'); %获取不同地点的货物数目与货物属性  序号 货物数目 重 长 宽 高
